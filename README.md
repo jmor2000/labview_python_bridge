@@ -5,7 +5,7 @@ Connects labview with python applications asynchronously via multi-processing da
 
 brought to you by [Awaken IoT](https://awakeniot.com/)
 
-## Why does this project exist?
+## 💡 Why does this project exist?
 This project was created to help Labview developers bridge their applications with python and pythons extensive open-source packages.</br>
 While Labivew provides native libraries to execute and interact with python scripts / code, there was no simple and flexible way to create  </br>
 
@@ -39,6 +39,11 @@ Currently tested with:
 - Python 3.9
 - On Windows 11
 
+Installation source:
+1. instal [Labview](https://www.ni.com/en/support/downloads/software-products/download.labview.html)
+2. install the right version of [Python](https://www.python.org/downloads/)
+3. (optional) install 'VS Code' to develop and run you python code / app
+
 > [!IMPORTANT]
 > Please check your Labview and Python [Compatibility](https://www.ni.com/en/support/documentation/supplemental/18/installing-python-for-calling-python-code.html)
 > The code provided can be easily upgraded for Python versions > 3.9, see the examples.
@@ -49,12 +54,9 @@ Currently tested with:
 > [!TIP]
 > It is possible to install python 3.9 on your host computer for 'Your-Labview-App' to utilise, while also installing a later version of python (e.g.3.13) which your 'Your-Python-App' will run on, all while maintaining communication.
 
-## Getting Started
-1. instal [Labview](https://www.ni.com/en/support/downloads/software-products/download.labview.html)
-2. install the right version of [Python](https://www.python.org/downloads/)
-3. (optional) install 'VS Code' to develop and run you python code / app
-4. Clone the 'labview_python_bridge' repository to your computer
-5. Go to: Python_app
+## ⚡ Getting Started in 60 seconds
+1. Clone the 'labview_python_bridge' repository to your computer
+2. Go to: Python_app
 ```
 labview_python_bridge\
   code_basic\
@@ -69,7 +71,7 @@ Example:
 * double click: myapp_run.cmd
 * A terminal will pop up with "📥 System ready. Waiting for LabVIEW data..."
 
-6. Go to: Labview_app
+3. Go to: Labview_app
 ```
 labview_python_bridge\
   code_basic\
@@ -89,4 +91,10 @@ Example:
 > - 'Your-Labview-App' can start and stop as many times as it likes, the queues and the data in them will remain live.</br>
 
 > [!WARNING]
-> Restarting 'Your-Python-App' will disconnect your 'Your-Labview-App', and destroy any data still in either queue. 
+> Restarting 'Your-Python-App' will disconnect your 'Your-Labview-App', and destroy any data still in either queue.
+
+## 👤 Author
+
+Built by [Jeff Morgan] @ [Awaken IoT](https://awakeniot.com/)
+
+If you're interested in tools like this, please subscribe to our LinkedIn page: https://www.linkedin.com/company/awakeniot
