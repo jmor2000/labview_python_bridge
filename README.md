@@ -3,16 +3,16 @@ Connects labview with python applications in realtime asynchronously via multi-p
 
 ![alt text](docs/images/banner.png)
 
-Current Version: v1.1.0.</br>
+Current Version: v1.0.0.</br>
 brought to you by [Awaken IoT](https://awakeniot.com/)
 
 ## 💡 Why does this project exist?
 This project was created to help Labview developers bridge their applications with python and pythons extensive open-source packages.
-While Labivew provides native libraries to execute and interact with python scripts / code, there was no fast and scalable way to integrate two live applications. 
+While LabVIEW provides native tools for executing Python code, integrating **live LabVIEW and Python applications** in a fast, scalable way remains challenging. Until now!
 
 ## How does it work?
 ### Code basic
-This method utlises native libraries in python and labview to provide bi-directional data communication.
+This method utlises native libraries in python and labview to provide bi-directional data communication via global queues.
 - Python - native [multiprocessing library](https://docs.python.org/3/library/multiprocessing.html)
 - Labview - native [python functions](https://www.ni.com/docs/en-US/bundle/labview-api-ref/page/menus/categories/computer/python-node-mnu.html)
 
@@ -85,7 +85,8 @@ Example:
 * double click: python_labview_bridge.lvproj
 * double click: ex1_call_collect.vi
 * click 'run' in labview
-* you should now see data passing to and from labview, have fun!
+
+4. you should now see data passing to and from labview, have fun!
 
 > [!TIP]
 > - The examples provided are very basic, send a data point to python, python will then manipulate it (add +10 to the value), and send it back.</br>
