@@ -1,7 +1,7 @@
 # labview_python_bridge
 Connects labview with python applications asynchronously via multi-processing data queues.
 
-![alt text]([/docs/images/banner.png](https://github.com/jmor2000/labview_python_bridge/blob/ac36ffe438199f39fbae98e90f148ed3d66872ef/docs/images/banner.png)
+![alt text](https://github.com/jmor2000/labview_python_bridge/blob/ac36ffe438199f39fbae98e90f148ed3d66872ef/docs/images/banner.png)
 
 ## How does it work?
 ### Code basic
