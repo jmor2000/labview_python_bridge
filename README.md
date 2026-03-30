@@ -9,7 +9,7 @@ This method utlises native libraries in python and labview to provide bi-directi
 - Python - native [multiprocessing library](https://docs.python.org/3/library/multiprocessing.html)
 - Labview - native [python functions](https://www.ni.com/docs/en-US/bundle/labview-api-ref/page/menus/categories/computer/python-node-mnu.html)
 
-**Topology**
+**Topology**</br>
 'Your-Python-App' 
 - deploys a 'Global Queue Service' to run in parrallel to itself on startup.
 - listens to the 'data in' queue for data to process, and sends data back via the 'data out' queue.
