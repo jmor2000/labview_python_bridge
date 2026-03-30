@@ -44,26 +44,43 @@ Currently tested with:
 > It is possible to install python 3.9 on your host computer for 'Your-Labview-App' to utilise, while also installing a later version of python (e.g.3.13) which your 'Your-Python-App' will run on, all while maintaining communication.
 
 ## Getting Started
-1. instal [Labview](https://www.ni.com/en/support/downloads/software-products/download.labview.html) and the right version of [Python](https://www.python.org/downloads/)
-2. Clone the 'labview_python_bridge' repository to your computer.
-3. Go to:
+1. instal [Labview](https://www.ni.com/en/support/downloads/software-products/download.labview.html)
+2. install the right version of [Python](https://www.python.org/downloads/)
+3. (optional) install 'VS Code' to develop and run you python code / app
+4. Clone the 'labview_python_bridge' repository to your computer
+5. Go to: Python
+```
 labview_python_bridge\
   code_basic\
     python_app\
-      myapp.py                -> python example source code
-      myapp_run.cmd           -> command line script to run python example script
-      myapp_run_hidden.ps1    -> powershell script to run python example script in the background
+      modules                 -> python "Global Queue Service" libraries
+      myapp.py                -> python example source code, can be run with VS Code
+      myapp_run.cmd           -> command line script to run python example script on Windows
+      myapp_run_hidden.ps1    -> powershell script to run python example script in the background on Windows
 
 ```
-function test() {
-  console.log("notice the blank line before this function?");
-}
+Example:  
+* double click: myapp_run.cmd
+* A terminal will pop up with "📥 System ready. Waiting for LabVIEW data..."
+
+6. Go to: Labview
 ```
-
-
+labview_python_bridge\
+  code_basic\
+    labview_app\
+      python_labview_bridge.lvproj    -> 'Your-Labview-App' project
+      pylabview                       -> pylabview "Global Queue Service" library
+      ex1,ex2,ex3....                 -> python example source code, can be run with Labview (open project first)
+```
+Example:  
+* double click: python_labview_bridge.lvproj
+* double click: ex1_call_collect.vi
+* click 'run' in labview
+* you should now see data passing to and from labview
 
 > [!NOTE]
-> Useful information that users should know, even when skimming content.
+> - 'Your-Python-App' needs to be active for Labview to send data to the queues.</br>
+> - 'Your-Labview-App' can start and stop as many times as it likes, the queues and the data in them will remain live.</br>
 
-> [!TIP]
-> Helpful advice for doing things better or more easily.
+> [!WARNING]
+> Restarting 'Your-Python-App' will disconnect your 'Your-Labview-App', and destroy any data still in either queue. 
