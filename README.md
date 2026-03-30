@@ -103,6 +103,6 @@ Example:
 
 ## 👤 Author
 
-Built by [Jeff Morgan] @ [Awaken IoT](https://awakeniot.com/)
+Built by Jeff Morgan @ [Awaken IoT](https://awakeniot.com/)
 
 If you're interested in tools like this, please follow our LinkedIn page: https://www.linkedin.com/company/awakeniot
