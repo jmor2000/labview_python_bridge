@@ -10,7 +10,7 @@ brought to you by [Awaken IoT](https://awakeniot.com/)
 This project was created to help Labview developers bridge their applications with python and pythons extensive open-source packages.
 While LabVIEW provides native tools for executing Python code, integrating **live LabVIEW and Python applications** in a fast, scalable way remains challenging. Until now!
 
-## How does it work?
+## 🔧 How does it work?
 ### Code basic
 This method utlises native libraries in python and labview to provide bi-directional data communication via global queues.
 - Python - native [multiprocessing library](https://docs.python.org/3/library/multiprocessing.html)
@@ -34,7 +34,7 @@ This method utlises native libraries in python and labview to provide bi-directi
 
 ![alt text](docs/images/diagram_code_basic.png)
 
-## Requirements
+## ⚙️ Requirements
 Currently tested with:
 - Labview 2022
 - Python 3.9
@@ -56,8 +56,8 @@ Installation source:
 > It is possible to install python 3.9 on your host computer for 'Your-Labview-App' to utilise, while also installing a later version of python (e.g.3.13) which your 'Your-Python-App' will run on, all while maintaining communication.
 
 ## ⚡ Getting Started in 60 seconds
-1. Clone the 'labview_python_bridge' repository to your computer
-2. Go to: Python_app
+### 1. Clone the 'labview_python_bridge' repository to your computer
+### 2. Go to: Python_app
 ```
 labview_python_bridge\
   code_basic\
@@ -72,7 +72,7 @@ Example:
 * double click: myapp_run.cmd
 * A terminal will pop up with "📥 System ready. Waiting for LabVIEW data..."
 
-3. Go to: Labview_app
+### 3. Go to: Labview_app
 ```
 labview_python_bridge\
   code_basic\
@@ -86,7 +86,7 @@ Example:
 * double click: ex1_call_collect.vi
 * click 'run' in labview
 
-4. you should now see data passing to and from labview, have fun!
+### 4. you should now see data passing to and from labview, have fun!
 
 > [!TIP]
 > - The examples provided are very basic, send a data point to python, python will then manipulate it (add +10 to the value), and send it back.</br>
