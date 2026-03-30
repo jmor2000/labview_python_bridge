@@ -1,5 +1,5 @@
 # labview_python_bridge
-Connects labview with python applications in realtime asynchronously via multi-processing data queues.
+Connects labview with python applications in asynchronously via multi-processing data queues.
 
 ![alt text](docs/images/banner.png)
 
