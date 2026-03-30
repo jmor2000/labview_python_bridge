@@ -35,6 +35,13 @@ Labview
 
 Python
 
+```
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
+
+
 
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
