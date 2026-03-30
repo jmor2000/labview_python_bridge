@@ -56,10 +56,10 @@ Installation source:
 > It is possible to install python 3.9 on your host computer for 'Your-Labview-App' to utilise, while also installing a later version of python (e.g.3.13) which your 'Your-Python-App' will run on, all while maintaining communication.
 
 ## ⚡ Getting Started in 60 seconds
-**1. Clone the 'labview_python_bridge' repository to your computer**
+**1. Clone or Download the 'labview_python_bridge' repository to your computer**
 **2. Go to: Python_app**
 ```
-labview_python_bridge\
+labview_python_bridge-main\
   code_basic\
     python_app\
       modules                 -> python "Global Queue Service" libraries
@@ -74,7 +74,7 @@ Example:
 
 **3. Go to: Labview_app**
 ```
-labview_python_bridge\
+labview_python_bridge-main\
   code_basic\
     labview_app\
       python_labview_bridge.lvproj    -> 'Your-Labview-App' project
