@@ -56,8 +56,8 @@ Installation source:
 > It is possible to install python 3.9 on your host computer for 'Your-Labview-App' to utilise, while also installing a later version of python (e.g.3.13) which your 'Your-Python-App' will run on, all while maintaining communication.
 
 ## ⚡ Getting Started in 60 seconds
-**1. Clone or Download the 'labview_python_bridge' repository to your computer**
-**2. Go to: Python_app**
+**1. Clone or Download the 'labview_python_bridge' repository to your computer**</b>
+**2. Go to: Python_app**</b>
 ```
 labview_python_bridge-main\
   code_basic\
@@ -68,11 +68,11 @@ labview_python_bridge-main\
       myapp_run_hidden.ps1    -> powershell script to run python example script in the background on Windows
 
 ```
-Example:  
+Example:
 * double click: myapp_run.cmd
-* A terminal will pop up with "📥 System ready. Waiting for LabVIEW data..."
+* A terminal will pop up with "📥 System ready. Waiting for LabVIEW data...
 
-**3. Go to: Labview_app**
+**3. Go to: Labview_app**</b>
 ```
 labview_python_bridge-main\
   code_basic\
@@ -86,7 +86,7 @@ Example:
 * double click: ex1_call_collect.vi
 * click 'run' in labview
 
-**4. you should now see data passing to and from labview, have fun!**
+**4. you should now see data passing to and from labview, have fun!**</b>
 
 ## 📸 Demo
 ![alt text](docs/images/demo_basic.gif)
