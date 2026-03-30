@@ -43,7 +43,7 @@ Currently tested with:
 Installation source:
 1. instal [Labview](https://www.ni.com/en/support/downloads/software-products/download.labview.html)
 2. install the right version of [Python](https://www.python.org/downloads/)
-3. (optional) install 'VS Code' to develop and run you python code / app
+3. (optional) install [VS Code](https://code.visualstudio.com/) to develop and run you python code / app
 
 > [!IMPORTANT]
 > Please check your Labview and Python [Compatibility](https://www.ni.com/en/support/documentation/supplemental/18/installing-python-for-calling-python-code.html)
@@ -87,6 +87,9 @@ Example:
 * click 'run' in labview
 
 **4. you should now see data passing to and from labview, have fun!**
+
+## 📸 Demo
+![alt text](docs/images/demo_basic.gif)
 
 > [!TIP]
 > - The examples provided are very basic, send a data point to python, python will then manipulate it (add +10 to the value), and send it back.</br>
