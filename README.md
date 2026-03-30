@@ -28,10 +28,20 @@ This method utlises native libraries in python and labview to provide bi-directi
 ![alt text](docs/images/diagram_code_basic.png)
 
 ## Requirements
-Labview
+Currently tested with:
+- Labview 2022
+- Python 3.9
+- On Windows 11
 
-[LabVIEW and Python Compatibility](https://www.ni.com/en/support/documentation/supplemental/18/installing-python-for-calling-python-code.html)
+> [!IMPORTANT]
+> Please check your Labview and Python [Compatibility](https://www.ni.com/en/support/documentation/supplemental/18/installing-python-for-calling-python-code.html)
+> The code provided can be easily upgraded for Python versions > 3.9, see the examples.
 
+> [!WARNING]
+> I do not recommend the installation of multiple versions of python on a single computer if you are a python beginner.
+
+> [!TIP]
+> It is possible to install python 3.9 on your host computer for 'Your-Labview-App' to utilise, while also installing a later version of python (e.g.3.13) which your 'Your-Python-App' will run on, all while maintaining communication.
 
 Python
 
