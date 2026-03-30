@@ -3,6 +3,12 @@ Connects labview with python applications asynchronously via multi-processing da
 
 ![alt text](docs/images/banner.png)
 
+brought to you by [Awaken IoT](https://awakeniot.com/)
+
+## Why does this project exist?
+This project was created to help Labview developers bridge their applications with python and pythons extensive open-source packages.</br>
+While Labivew provides native libraries to execute and interact with python scripts / code, there was no simple and flexible way to create  </br>
+
 ## How does it work?
 ### Code basic
 This method utlises native libraries in python and labview to provide bi-directional data communication.
@@ -48,7 +54,7 @@ Currently tested with:
 2. install the right version of [Python](https://www.python.org/downloads/)
 3. (optional) install 'VS Code' to develop and run you python code / app
 4. Clone the 'labview_python_bridge' repository to your computer
-5. Go to: Python
+5. Go to: Python_app
 ```
 labview_python_bridge\
   code_basic\
@@ -63,7 +69,7 @@ Example:
 * double click: myapp_run.cmd
 * A terminal will pop up with "📥 System ready. Waiting for LabVIEW data..."
 
-6. Go to: Labview
+6. Go to: Labview_app
 ```
 labview_python_bridge\
   code_basic\
@@ -76,7 +82,7 @@ Example:
 * double click: python_labview_bridge.lvproj
 * double click: ex1_call_collect.vi
 * click 'run' in labview
-* you should now see data passing to and from labview
+* you should now see data passing to and from labview, have fun!
 
 > [!NOTE]
 > - 'Your-Python-App' needs to be active for Labview to send data to the queues.</br>
