@@ -3,11 +3,13 @@ Connects labview with python applications asynchronously via multi-processing da
 
 ![alt text](docs/images/banner.png)
 
+Current Version: v1.1.0
 brought to you by [Awaken IoT](https://awakeniot.com/)
 
 ## 💡 Why does this project exist?
 This project was created to help Labview developers bridge their applications with python and pythons extensive open-source packages.</br>
-While Labivew provides native libraries to execute and interact with python scripts / code, there was no simple and flexible way to create  </br>
+While Labivew provides native libraries to execute and interact with python scripts / code, there was no fast and scalable way to integrate them. Until now! </br>
+This project allows Labview developers to easily 
 
 ## How does it work?
 ### Code basic
@@ -87,14 +89,19 @@ Example:
 * you should now see data passing to and from labview, have fun!
 
 > [!NOTE]
+> - The examples provided are very basic, send a data point to python, python will then manipulate it (add +10 to the value), and send it back.</br>
+> - You can modify this in many ways, I recommend using JSON data structures as "instructions" for python to do some task or service.... up to you!
+
+> [!NOTE]
 > - 'Your-Python-App' needs to be active for Labview to send data to the queues.</br>
 > - 'Your-Labview-App' can start and stop as many times as it likes, the queues and the data in them will remain live.</br>
 
 > [!WARNING]
 > Restarting 'Your-Python-App' will disconnect your 'Your-Labview-App', and destroy any data still in either queue.
+> Getting the conversion between Labview data types (e.g. Double) and Python (e.g. Float) can be a pain, I highly recommend sticking to JSON formats, as the data queues transfer a String data types.
 
 ## 👤 Author
 
 Built by [Jeff Morgan] @ [Awaken IoT](https://awakeniot.com/)
 
-If you're interested in tools like this, please subscribe to our LinkedIn page: https://www.linkedin.com/company/awakeniot
+If you're interested in tools like this, please follow our LinkedIn page: https://www.linkedin.com/company/awakeniot
