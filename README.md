@@ -43,7 +43,16 @@ Currently tested with:
 > [!TIP]
 > It is possible to install python 3.9 on your host computer for 'Your-Labview-App' to utilise, while also installing a later version of python (e.g.3.13) which your 'Your-Python-App' will run on, all while maintaining communication.
 
-Python
+## Getting Started
+1. instal [Labview](https://www.ni.com/en/support/downloads/software-products/download.labview.html) and the right version of [Python](https://www.python.org/downloads/)
+2. Clone the 'labview_python_bridge' repository to your computer.
+3. Go to:
+labview_python_bridge\
+  code_basic\
+    python_app\
+      myapp.py                -> python example source code
+      myapp_run.cmd           -> command line script to run python example script
+      myapp_run_hidden.ps1    -> powershell script to run python example script in the background
 
 ```
 function test() {
