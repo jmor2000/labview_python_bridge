@@ -1,5 +1,5 @@
 import queue, json
-from lib.pyQserver import start_server, connect_to_server, terminate_server
+from modules.pyQserver import start_server, connect_to_server, terminate_server
 
 def main():
     # Configuration - In a real project, these could come from a .env file
@@ -32,6 +32,7 @@ def main():
                 except json.JSONDecodeError:
                     print(f"⚠️ Received malformed data: {raw_data}")
                     flag_process_data = False
+                    
                 # B.Validate - input item is present
                 if 'double' in msg:
                     flag_process_data = True

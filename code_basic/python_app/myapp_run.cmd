@@ -1,3 +1,3 @@
 title Your Python App
-py -3.13 myapp.py
+py myapp.py
 cmd /k

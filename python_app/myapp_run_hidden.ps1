@@ -1,1 +1,0 @@
-Start-Process "py" -ArgumentList "-3.13", "myapp.py" -WindowStyle Hidden
