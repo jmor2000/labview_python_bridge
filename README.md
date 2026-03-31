@@ -6,7 +6,7 @@ Connect labview apps with python apps in realtime with multi-processing data que
 brought to you by [Awaken IoT](https://awakeniot.com/)
 
 ## 💡 Why does this project exist?
-This project was created to help Labview developers bridge their applications with pythons extensive open-source packages and gen AI capabilities.
+This project was created to help Labview developers bridge their applications with pythons extensive open-source packages and gen AI coding capabilities.
 While LabVIEW provides native tools for executing Python code, connecting live LabVIEW and Python applications in a fast, scalable way remains challenging. Until now!
 
 ## 🔧 How does it work?
