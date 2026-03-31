@@ -1,18 +1,17 @@
-# labview_python_bridge
-Connects live labview with python applications asynchronously via multi-processing data queues.
+# Labview Python Bridge
+Connect labview apps with python apps in realtime with multi-processing data queues.
 
 ![alt text](docs/images/banner.png)
 
-Current Version: v1.0.0.</br>
 brought to you by [Awaken IoT](https://awakeniot.com/)
 
 ## 💡 Why does this project exist?
-This project was created to help Labview developers bridge their applications with python and pythons extensive open-source packages.
-While LabVIEW provides native tools for executing Python code, integrating **live LabVIEW and Python applications** in a fast, scalable way remains challenging. Until now!
+This project was created to help Labview developers bridge their applications with pythons extensive open-source packages and gen AI capabilities.
+While LabVIEW provides native tools for executing Python code, connecting live LabVIEW and Python applications in a fast, scalable way remains challenging. Until now!
 
 ## 🔧 How does it work?
 ### Code basic
-This method utlises native libraries in python and labview to provide bi-directional data communication via global queues.
+This Labview-Python-Bridge is lightweight, by taking advantage of native libraries in python and labview to provide bi-directional data communication via global data queues.
 - Python - native [multiprocessing library](https://docs.python.org/3/library/multiprocessing.html)
 - Labview - native [python functions](https://www.ni.com/docs/en-US/bundle/labview-api-ref/page/menus/categories/computer/python-node-mnu.html)
 
@@ -21,12 +20,12 @@ This method utlises native libraries in python and labview to provide bi-directi
 - deploys a 'Global Queue Service' to run in parrallel to itself on startup.
 - listens to the 'data in' queue for data to process, and sends data back via the 'data out' queue.
 
-'Global Queue Service'
+'Global Queue Service' aka the 'Bridge'
 - hosts two data queues (In & Out) which can be accessed using the python "Lbv_Global_Que" class.
-- requirements to connect are IP Address, Network Port, Password (Auth), defined in 'Your-Python-App'.
+- requirements to connect are IP Address, Network Port, Password (Auth), which are defined in 'Your-Python-App'.
 
 'Your-Labview-App'
-- connects to the 'Global Queue Service' and accesses the data queses by creating and interactive with "Lbv_Global_Que" class object.
+- connects to the 'Global Queue Service' and accesses the data queue by creating and interactive with python "Lbv_Global_Que" class object via Python functions called by Labview.
 - sends data yo python via the 'data in' queue, and listens to the 'data out' queue for data sent back.
 
 > [!NOTE]
@@ -41,19 +40,20 @@ Currently tested with:
 - On Windows 11
 
 Installation source:
-1. instal [Labview](https://www.ni.com/en/support/downloads/software-products/download.labview.html)
+1. install [Labview](https://www.ni.com/en/support/downloads/software-products/download.labview.html)
 2. install the right version of [Python](https://www.python.org/downloads/)
 3. (optional) install [VS Code](https://code.visualstudio.com/) to develop and run you python code / app
 
 > [!IMPORTANT]
 > Please check your Labview and Python [Compatibility](https://www.ni.com/en/support/documentation/supplemental/18/installing-python-for-calling-python-code.html)
-> The code provided can be easily upgraded for Python versions > 3.9, see the examples.
+> The code provided can be easily upgraded for more up to date Python versions > 3.9, see the examples for details.
 
 > [!WARNING]
-> I do not recommend the installation of multiple versions of python on a single computer if you are a python beginner.
+> I do not recommend the installation of multiple versions of python on a single computer if you are a python beginner.</b>
+> If you are going to install multiple version, you should take advantage of [Python Virtual Enviroments](https://docs.python.org/3/library/venv.html)
 
 > [!TIP]
-> It is possible to install python 3.9 on your host computer for 'Your-Labview-App' to utilise, while also installing a later version of python (e.g.3.13) which your 'Your-Python-App' will run on, all while maintaining communication.
+> It is possible to install python 3.9 on your host computer for 'Your-Labview-App' to utilise, while also installing a later version of python (e.g.3.13) which your 'Your-Python-App' will run on, all while maintaining communication between apps.
 
 ## ⚡ Getting Started in 60 seconds
 **1. Clone or Download the 'labview_python_bridge' repository to your computer**</b>
@@ -92,9 +92,8 @@ Example:
 ![alt text](docs/images/demo_basic.gif)
 
 > [!TIP]
-> - The examples provided are very basic, send a data point to python, python will then manipulate it (add +10 to the value), and send it back.</br>
+> - The examples provided are very basic, in which data points are sent to python, which are then manipulated (add +10 to the value), and sent back.</br>
 > - You can modify this in many ways, I recommend using JSON data structures as "instructions" for python to do some task or service.... up to you!</br>
-> - I advise keeping Labview focused on what it does best (Local ecosystem), and and keeping python focused on what it does best (Wide ecosystem).</br>
 
 > [!NOTE]
 > - 'Your-Python-App' needs to be active for Labview to send data to the queues.</br>
@@ -102,7 +101,7 @@ Example:
 
 > [!WARNING]
 > - Restarting 'Your-Python-App' will disconnect your 'Your-Labview-App', and destroy any data still in either queue.</br>
-> - Getting the conversion between Labview data types (e.g. Double) and Python (e.g. Float) can be a pain, I highly recommend sticking to JSON formats, as the data queues transfer a String data types.
+> - Getting the conversion between Labview data types (e.g. Double, Flatten, etc) and Python data types can be a pain, I highly recommend sticking to JSON formats, as the data queues transfer 'String' data types.
 
 ## 👤 Author
 
