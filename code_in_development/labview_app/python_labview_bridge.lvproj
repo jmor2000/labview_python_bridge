@@ -16,6 +16,7 @@
 		<Item Name="ex2_producer.vi" Type="VI" URL="../ex2_producer.vi"/>
 		<Item Name="ex2_consumer.vi" Type="VI" URL="../ex2_consumer.vi"/>
 		<Item Name="ex3_producer_consumer.vi" Type="VI" URL="../ex3_producer_consumer.vi"/>
+		<Item Name="ex3_producer_consumer_deltat.vi" Type="VI" URL="../ex3_producer_consumer_deltat.vi"/>
 		<Item Name="py_msg.ctl" Type="VI" URL="../py_msg.ctl"/>
 		<Item Name="pythonq.lvlib" Type="Library" URL="../pylabview/pythonq.lvlib"/>
 		<Item Name="Dependencies" Type="Dependencies">
@@ -23,6 +24,7 @@
 				<Item Name="Application Directory.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Application Directory.vi"/>
 				<Item Name="Error Cluster From Error Code.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Error Cluster From Error Code.vi"/>
 				<Item Name="NI_FileType.lvlib" Type="Library" URL="/&lt;vilib&gt;/Utility/lvfile.llb/NI_FileType.lvlib"/>
+				<Item Name="High Resolution Relative Seconds.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/High Resolution Relative Seconds.vi"/>
 			</Item>
 			<Item Name="PythonVersionsEnum.ctl" Type="VI" URL="/C/Program Files (x86)/National Instruments/LabVIEW 2022/examples/Connectivity/Python/support/PythonVersionsEnum.ctl"/>
 			<Item Name="ToPythonVersionString.vi" Type="VI" URL="/C/Program Files (x86)/National Instruments/LabVIEW 2022/examples/Connectivity/Python/support/ToPythonVersionString.vi"/>
