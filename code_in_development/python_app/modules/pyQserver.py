@@ -6,6 +6,8 @@
 #..........................................................................
 import multiprocessing
 from multiprocessing.managers import BaseManager
+from datetime import datetime
+import json
 
 class QueueManager(BaseManager): pass
 
@@ -46,13 +48,13 @@ def connect_to_server(ip:str, port:int, key:str):
         thequeuein = m2.lv_que_in()
         thequeueout = m2.lv_que_out()
         
-        return thequeuein,thequeueout
+        return True, thequeuein,thequeueout
     except ConnectionRefusedError:
         print(f"Connection refused. Is the server running at {ip}:{port}?")
-        return None, None
+        return False, None, None
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
-        return None, None
+        return False, None, None
 
 def terminate_server(server_process:multiprocessing.Process):  
     """
@@ -61,3 +63,51 @@ def terminate_server(server_process:multiprocessing.Process):
     if server_process:
         server_process.terminate()
         server_process.join()
+
+class SharedLog():
+    """
+    
+    logs information to the terminal via print + sends the info to an external app via a data queue.
+    
+    """
+    def __init__(self, que_out:multiprocessing.Queue):
+        self.logs  = []
+        self.count = [0,0,0]
+        self.statusque = que_out
+
+    def _log(self, level: str, message: str, iref="", xref=""):
+        """Internal helper to format and store the log."""
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%ms")
+        # Standardizing the level tag to 5 characters for visual alignment
+        formatted_entry = f"{timestamp} - {level.upper():<5}"
+        if iref != "":
+            formatted_entry += f"- {iref}"
+        if xref != "":
+            formatted_entry += f"- {xref}"
+        formatted_entry += f"- {message}"
+        send_msg = level.upper() + " - " + message
+
+        log_msg = {
+            "id"  :"log",
+            "ts"  :timestamp,
+            "msg" :send_msg,
+            "iref":iref,
+            "xref":xref,
+        }
+        #output        
+        print(formatted_entry)
+        self.statusque.put(json.dumps(log_msg))
+
+    def info(self, message: str, iref="", xref=""):
+        self._log("INFO", message,iref,xref)
+        self.count[0] += 1
+
+    def warn(self, message: str, iref="", xref=""):
+        self._log("WARN", message,iref,xref)
+        self.count[1] += 1
+
+    def error(self, message: str, iref="", xref=""):
+        self._log("ERROR", message,iref,xref)
+        self.count[2] += 1
+
+    

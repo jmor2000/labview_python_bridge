@@ -18,6 +18,10 @@ class QueueManager(BaseManager):
 QueueManager.register('lv_que_in')
 QueueManager.register('lv_que_out')
 
+# meq = queue.Queue()
+# meq.put(block=False)
+# meq.get()
+
 class Lbv_Global_Que:
     """
     Client object to interface LabVIEW with a remote Python Queue Manager.
@@ -51,7 +55,7 @@ class Lbv_Global_Que:
     def en_que(self, qid:int, data:str, timeout:float):
         """Class method to safely push data into the que"""
         try:
-            self.queues[qid].put(data, timeout=timeout)
+            self.queues[qid].put(data,block=False,timeout=timeout)
             return True, ""
         except queue.Full:
             return False, "Error: Queue is full."
@@ -61,7 +65,7 @@ class Lbv_Global_Que:
     def de_que(self, qid:int, timeout:float):
         """Safely retrieves data from the queue."""
         try:
-            data = self.queues[qid].get(timeout=timeout)
+            data = self.queues[qid].get(block=False,timeout=timeout)
             return data, True, ""
         except queue.Empty:
             return "", False, "Error: Timeout reached."
