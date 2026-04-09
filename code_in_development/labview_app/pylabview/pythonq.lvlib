@@ -21,5 +21,6 @@ Copyright (c) 2026 jeff morgan</Property>
 	<Item Name="py_cluster.ctl" Type="VI" URL="../py_cluster.ctl"/>
 	<Item Name="py_session.ctl" Type="VI" URL="../py_session.ctl"/>
 	<Item Name="py_result.ctl" Type="VI" URL="../py_result.ctl"/>
+	<Item Name="py_msg.ctl" Type="VI" URL="../py_msg.ctl"/>
 	<Item Name="pyQaccess.py" Type="Document" URL="../pyQaccess.py"/>
 </Library>

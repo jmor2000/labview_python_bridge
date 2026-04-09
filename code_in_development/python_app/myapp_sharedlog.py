@@ -1,8 +1,6 @@
 import queue, json, time
-from modules.pyQserver import start_server, connect_to_server, terminate_server, SharedLog
-
-import sys
-from datetime import datetime
+from modules.pyQserver import start_server, connect_to_server, terminate_server, SharedLog, gen_msg_template
+import sys, traceback
 
 def main(app_name:str):
     # Configuration - In a real project, these could come from a .env file
@@ -26,65 +24,70 @@ def main(app_name:str):
     if isconnected == True:
 
         # Feature to share python logs with your labview app
-        applog = SharedLog(q_out)
-        applog.info("System ready. Waiting for LabVIEW data...",iref=app_name,)
+        labview_log = SharedLog(app_name,q_out)
+        labview_log.info("System ready. Waiting for LabVIEW data...")
 
         # 3. Processing Loop -----------------------------------------
+        flag_loop_exit = False
         while True:
             try:
             # Operation...........
-                flag_process_data = False
+                flag_process_data = True
 
-                # A.Read DATA
-                raw_data = q_in.get(timeout=0.1)  
-                # B.Validate - input data is JSON
                 try:
-                    msg = json.loads(raw_data)
-                except json.JSONDecodeError:
-                    print(f"⚠️ Received malformed data: {raw_data}")
+                    # A.Read DATA
+                    raw_data = q_in.get(timeout=0.1)  
+                    idata = json.loads(raw_data)
+                    ivalue = idata['msg']
+                    xref = idata['xref']
+
+                # Catch Errors............
+                except queue.Empty:
+                    # No data received within timeout, just loop again
                     flag_process_data = False
-                    
-                # B.Validate - input item is present 
-                # e.g. double is a json value sent in the message {"double":"0.12345", "ref":"123anything"}
-                if 'double' in msg:
-                    flag_process_data = True
+                except json.JSONDecodeError:
+                    # failed to load json from message
+                    labview_log.error(f" Received malformed data: {raw_data}")
+                    flag_process_data = False
 
-                # C. Process Data -------------------------------------------------
+                # B. Process Data -------------------------------------------------
                 if flag_process_data == True:
-
-                    val = float(msg['double'])
-                    ref = msg['ref']
+                    
+                    # convert msg val to float
+                    # note: this value can be anything you want, for example another JSON
+                    val = float(ivalue)
                     # log the action
-                    applog.info(f'Processing: {val}',iref=app_name,xref=ref)
+                    labview_log.info(f'Processing: {val}',iref="step-b",xref=xref)
                     # note: I am updating the send data JSON with a new value
                     newval = val + 10.0
-                    
-                    # construct return message
-                    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%ms")
-                    data_msg = {
-                        "id":"data",
-                        "ts":timestamp,
-                        "msg": str(newval),
-                        "iref":"123",
-                        "xref":ref,
-                    }
-                    # D. Send data back =====
+                
+                    # C. Return data -------------------------------------------------
+                    data_msg = gen_msg_template(timestamp=True)
+                    data_msg['id']   = "data"
+                    data_msg['type']   = "data"
+                    data_msg['msg']  = str(newval)
+                    data_msg['iref'] = "123"
+                    data_msg['xref'] = xref
+
                     q_out.put(json.dumps(data_msg))
 
                     # --------------------------------------------------------------
-
-                    time.sleep(0.005)
+                    time.sleep(0.005) #<<<< for testing purposes only, can remove
                 
-            # Catch Error............
-            except queue.Empty:
-                # No data received within timeout, just loop again
-                continue
+            # Handle errors
             except KeyboardInterrupt:
                 # Exit the loop
-                applog.warn(f'loop ending...',iref=app_name)
-                break
+                labview_log.warn(f'loop ending...',iref=app_name)
+                flag_loop_exit = True
             except Exception as e:
-                applog.warn(f"❌ Error in loop: {e}",iref=app_name)
+                labview_log.error(f"❌ Error in loop",iref=app_name)
+                tb = traceback.format_exc()
+                print(tb)
+                flag_loop_exit = True
+
+            # Exit loop
+            if flag_loop_exit == True:
+                terminate_server(py_que_server)
                 break
     else:
         print("count not connect or create")

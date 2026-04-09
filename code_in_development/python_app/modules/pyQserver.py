@@ -64,49 +64,98 @@ def terminate_server(server_process:multiprocessing.Process):
         server_process.terminate()
         server_process.join()
 
+def gen_timestamp():
+    """
+    Generate a timestamp in a string format
+    """
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%ms")
+    return ts
+
+def gen_msg_template(timestamp=False):
+    """
+    This is the default message template to add to data queues
+
+    id       = id of sender   
+    type     = type of message, e.g. log, data, cmd, error, sys
+    ts       = timestamp string
+    msg      = anything (in string format)
+    iref     = internal reference, e.g. for log the current step
+    xref     = external reference, e.g. your labview app sends a id per message sent
+
+    version 1.0
+
+    """
+    msg = {
+        "id"  :"",
+        "type"  :"",       
+        "ts"  :"",
+        "msg" :"",
+        "iref":"",
+        "xref":""
+    }
+    if timestamp == True:
+        gen_timestamp()
+    return msg
+
 class SharedLog():
     """
     
     logs information to the terminal via print + sends the info to an external app via a data queue.
     
     """
-    def __init__(self, que_out:multiprocessing.Queue):
+    def __init__(self, name:str, que_out:multiprocessing.Queue):
         self.logs  = []
         self.count = [0,0,0]
         self.statusque = que_out
+        self.name = name
 
     def _log(self, level: str, message: str, iref="", xref=""):
         """Internal helper to format and store the log."""
-        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%ms")
-        # Standardizing the level tag to 5 characters for visual alignment
-        formatted_entry = f"{timestamp} - {level.upper():<5}"
-        if iref != "":
-            formatted_entry += f"- {iref}"
-        if xref != "":
-            formatted_entry += f"- {xref}"
-        formatted_entry += f"- {message}"
-        send_msg = level.upper() + " - " + message
+        try:
+            timestamp = gen_timestamp()
+            # Standardizing the level tag to 5 characters for visual alignment
+            formatted_entry = f"{timestamp} - {level.upper():<5}"
+            if iref != "":
+                formatted_entry += f"- {iref}"
+            if xref != "":
+                formatted_entry += f"- {xref}"
+            formatted_entry += f"- {message}"
+            send_msg = level.upper() + " - " + message
 
-        log_msg = {
-            "id"  :"log",
-            "ts"  :timestamp,
-            "msg" :send_msg,
-            "iref":iref,
-            "xref":xref,
-        }
-        #output        
-        print(formatted_entry)
-        self.statusque.put(json.dumps(log_msg))
+            # assemble message            
+            log_msg = gen_msg_template()
+            log_msg['id']   = self.name            
+            log_msg['type'] = "log"
+            log_msg['msg']  = send_msg
+            log_msg['ts']   = timestamp
+            log_msg['iref'] = iref
+            log_msg['xref'] = xref
+            #output
+            print(formatted_entry)
+            self.statusque.put(json.dumps(log_msg), block=False)
+            return True
+        except Exception:
+            # do fail and ignore, not critical operation
+            return False
 
     def info(self, message: str, iref="", xref=""):
+        """
+        logging level 0 = INFO
+        """
         self._log("INFO", message,iref,xref)
         self.count[0] += 1
 
     def warn(self, message: str, iref="", xref=""):
+        """
+        logging level 1 = WARNING
+        """
         self._log("WARN", message,iref,xref)
         self.count[1] += 1
 
     def error(self, message: str, iref="", xref=""):
+        """
+        logging level 2 = ERROR
+        """
         self._log("ERROR", message,iref,xref)
         self.count[2] += 1
 

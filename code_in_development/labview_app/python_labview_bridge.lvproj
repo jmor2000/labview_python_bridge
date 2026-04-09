@@ -13,7 +13,6 @@
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
 		<Item Name="ex5_sharedlog.vi" Type="VI" URL="../ex5_sharedlog.vi"/>
-		<Item Name="py_msg.ctl" Type="VI" URL="../py_msg.ctl"/>
 		<Item Name="pythonq.lvlib" Type="Library" URL="../pylabview/pythonq.lvlib"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
